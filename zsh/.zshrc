@@ -4,7 +4,7 @@ ZSH_THEME="agnoster"
 
 COMPLETION_WAITING_DOTS="true"
 
-plugins=(chucknorris git colored-man-pages vi-mode)
+plugins=(git colored-man-pages vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
