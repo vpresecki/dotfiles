@@ -3,13 +3,6 @@
 # Lokacija dotfiles
 DOTFILES_DIR=~/dotfiles
 
-# Kreiraj simboličke linkove za konfiguracije
-ln -sf $DOTFILES_DIR/nvim ~/.config/nvim
-ln -sf $DOTFILES_DIR/tmux ~/.config/tmux
-ln -sf $DOTFILES_DIR/wezterm ~/.config/wezterm
-ln -sf $DOTFILES_DIR/zsh ~/.config/zsh
-ln -sf $DOTFILES_DIR/zsh/.zshrc ~/.zshrc
-
 # Instaliraj ovisnosti (Oh My Zsh, dodatci, SDKMAN, tmux)
 if ! command -v zsh &> /dev/null; then
   echo "Instaliram Zsh..."
@@ -40,6 +33,15 @@ if ! command -v tmux &> /dev/null; then
   echo "Instaliram tmux..."
   sudo apt install -y tmux
 fi
+
+# Kreiraj simboličke linkove za konfiguracije (nakon instalacija)
+echo "Postavljam simboličke linkove za konfiguracije..."
+rm -f ~/.zshrc  # Ukloni postojeći .zshrc (ako postoji)
+ln -sf $DOTFILES_DIR/zsh/.zshrc ~/.zshrc
+ln -sf $DOTFILES_DIR/nvim ~/.config/nvim
+ln -sf $DOTFILES_DIR/tmux ~/.config/tmux
+ln -sf $DOTFILES_DIR/wezterm ~/.config/wezterm
+ln -sf $DOTFILES_DIR/zsh ~/.config/zsh
 
 # Učitaj nove Zsh postavke
 if [ -f ~/.zshrc ]; then
