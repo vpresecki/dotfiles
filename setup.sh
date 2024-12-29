@@ -88,10 +88,10 @@ elif [[ $OS == "Ubuntu" ]]; then
 
   # Link or source plugins
   if [ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
-    ln -sf /usr/share/zsh-syntax-highlighting ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+    ln -sf /usr/share/zsh-syntax-highlighting ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
   fi
   if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
-    ln -sf /usr/share/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+    ln -sf /usr/share/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
   fi
 fi
 
