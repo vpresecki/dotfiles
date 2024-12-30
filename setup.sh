@@ -111,7 +111,7 @@ fi
 echo "Postavljam simboličke linkove za konfiguracije..."
 
 mkdir -p ~/.config/nvim
-ln -sf $DOTFILES_DIR/nvim ~/.config/nvim
+ln -sfn $DOTFILES_DIR/nvim ~/.config/nvim
 
 mkdir -p ~/.config/tmux
 ln -sf $DOTFILES_DIR/tmux ~/.config/tmux
