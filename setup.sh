@@ -94,22 +94,23 @@ if [[ $OS == "macOS" ]]; then
   ln -sf /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
 
 # Specifične postavke za Ubuntu
-elif [[ $OS == "Ubuntu" ]]; then
+if [[ $OS == "Ubuntu" ]]; then
   echo "Postavljam Ubuntu specifične ovisnosti..."
   sudo apt install -y zsh-syntax-highlighting zsh-autosuggestions
 
   # Link or source plugins
   if [ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
-    sudo ln -sf /usr/share/zsh-syntax-highlighting ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
+    mkdir -p ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+    ln -sf /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
   fi
+
   if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
-    sudo ln -sf /usr/share/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+    mkdir -p ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+    ln -sf /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
   fi
 fi
 
 # Kreiraj simboličke linkove za konfiguracije
-echo "Postavljam simboličke linkove za konfiguracije..."
-
 echo "Postavljam simboličke linkove za konfiguracije..."
 
 # Neovim
@@ -126,7 +127,7 @@ ln -sfn $DOTFILES_DIR/zsh ~/.config/zsh
 
 # Ghostty
 rm -rf ~/.config/ghostty  # Ensure ghostty directory is clean
-ln -sfn $DOTFILES_DIR/ghostty/config ~/.config/ghostty/config
+ln -sfn $DOTFILES_DIR/ghostty ~/.config/ghostty
 
 # Učitaj nove Zsh postavke
 if [ -f ~/.zshrc ]; then
