@@ -9,7 +9,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
   OS="Ubuntu"
 else
-  echo "Ova skripta podržava samo iOS i Ubuntu."
+  echo "Ova skripta podržava samo macOS i Ubuntu."
   exit 1
 fi
 
@@ -86,30 +86,6 @@ fi
 # Specifične postavke za macOS
 if [[ $OS == "macOS" ]]; then
   echo "Postavljam macOS specifične ovisnosti..."
-  brew install zsh-syntax-highlighting zsh-autosuggestions
-
-  # Link plugins to Oh My Zsh custom plugins directory
-  mkdir -p ~/.oh-my-zsh/custom/plugins
-  ln -sf /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
-  ln -sf /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
-
-# Specifične postavke za Ubuntu
-if [[ $OS == "Ubuntu" ]]; then
-  echo "Postavljam Ubuntu specifične ovisnosti..."
-  sudo apt install -y zsh-syntax-highlighting zsh-autosuggestions
-
-  # Link or source plugins
-  if [ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
-    mkdir -p ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
-    ln -sf /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
-  fi
-
-  if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
-    mkdir -p ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
-    ln -sf /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
-  fi
-fi
-
 # Kreiraj simboličke linkove za konfiguracije
 echo "Postavljam simboličke linkove za konfiguracije..."
 
@@ -145,4 +121,27 @@ if command -v tmux &> /dev/null; then
   fi
 fi
 
-echo "Konfiguracija za $OS je dovršena!"
+echo "Konfiguracija za $OS je dovršena!"  brew install zsh-syntax-highlighting zsh-autosuggestions
+
+  # Link plugins to Oh My Zsh custom plugins directory
+  mkdir -p ~/.oh-my-zsh/custom/plugins
+  ln -sf /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+  ln -sf /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
+fi  # <-- Added missing 'fi' to close the macOS-specific block
+
+# Specifične postavke za Ubuntu
+if [[ $OS == "Ubuntu" ]]; then
+  echo "Postavljam Ubuntu specifične ovisnosti..."
+  sudo apt install -y zsh-syntax-highlighting zsh-autosuggestions
+
+  # Link or source plugins
+  if [ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+    mkdir -p ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+    ln -sf /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
+  fi
+
+  if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+    mkdir -p ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+    ln -sf /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+  fi
+fi
