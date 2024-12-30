@@ -100,27 +100,33 @@ elif [[ $OS == "Ubuntu" ]]; then
 
   # Link or source plugins
   if [ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
-    ln -sf /usr/share/zsh-syntax-highlighting ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
+    sudo ln -sf /usr/share/zsh-syntax-highlighting ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
   fi
   if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
-    ln -sf /usr/share/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+    sudo ln -sf /usr/share/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
   fi
 fi
 
 # Kreiraj simboličke linkove za konfiguracije
 echo "Postavljam simboličke linkove za konfiguracije..."
 
-mkdir -p ~/.config/nvim
+echo "Postavljam simboličke linkove za konfiguracije..."
+
+# Neovim
+rm -rf ~/.config/nvim  # Remove existing directory or incorrect symlink
 ln -sfn $DOTFILES_DIR/nvim ~/.config/nvim
 
-mkdir -p ~/.config/tmux
-ln -sf $DOTFILES_DIR/tmux ~/.config/tmux
+# Tmux
+rm -rf ~/.config/tmux  # Ensure no pre-existing directory or link conflicts
+ln -sfn $DOTFILES_DIR/tmux ~/.config/tmux
 
-mkdir -p ~/.config/zsh
-ln -sf $DOTFILES_DIR/zsh ~/.config/zsh
+# Zsh
+rm -rf ~/.config/zsh
+ln -sfn $DOTFILES_DIR/zsh ~/.config/zsh
 
-mkdir -p ~/.config/ghostty
-ln -sf $DOTFILES_DIR/ghostty/config ~/.config/ghostty/config
+# Ghostty
+rm -rf ~/.config/ghostty  # Ensure ghostty directory is clean
+ln -sfn $DOTFILES_DIR/ghostty/config ~/.config/ghostty/config
 
 # Učitaj nove Zsh postavke
 if [ -f ~/.zshrc ]; then
