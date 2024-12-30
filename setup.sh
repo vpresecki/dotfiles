@@ -71,6 +71,18 @@ if ! command -v tmux &> /dev/null; then
   fi
 fi
 
+# Provjera i instalacija Neovim
+if ! command -v nvim &> /dev/null; then
+  echo "Instaliram Neovim..."
+  if [[ $OS == "macOS" ]]; then
+    brew install neovim
+  elif [[ $OS == "Ubuntu" ]]; then
+    sudo apt install -y neovim
+  fi
+else
+  echo "Neovim je već instaliran."
+fi
+
 # Specifične postavke za macOS
 if [[ $OS == "macOS" ]]; then
   echo "Postavljam macOS specifične ovisnosti..."
